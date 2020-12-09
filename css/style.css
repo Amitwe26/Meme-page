@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0 25px;
+    background-color: black;
+}
+input {
+    display: block;
+    width: 200px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+
+
+header {
+    background-color: cadetblue;
+    height: 73px;
+}
+.logo img{
+    width: 220px;
+    margin-left: 75px;
+    padding: 10px;
+}
+
+.container-canvas{
+    width: 90vw;
+    height: 31.25em;
+    margin: 3em;    
+}
+canvas {
+    margin: 0 50px;
+    
+}
+
+.container-main{
+    background-color: rgba(200, 200, 200, 0.65);
+    padding: 3em;
+    height: 500px;
+    border: 2px solid rgb(243, 178, 38);
+    margin-right: 20px;
+
+}
+.btn-main {
+    line-height: 2.2em;
+    border: 0.125em solid #c2bbbb;
+    border-radius: 100px;
+    color: #9b9999;
+    background-color: #ffffff;
+    transition: padding .8s;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    margin: .2em;
+}
+.btn-main:hover {
+    color: #e2b75b;
+    border-color: #e2b75b;
+    cursor: pointer;
+}
+
+
+
+
+
+
+.container-pictures{
+    width: 90vw;
+    height: 500px;
+    border: 1px solid black;
+
+}
+
+.container-pictures img{
+    height: 150px;
+    width: 135px;
+}
+
+
+/* HELPER */
+
+.flex {
+    display: flex;
+    
+}
+.flex.space-between {
+
+    justify-content: space-between;
+}

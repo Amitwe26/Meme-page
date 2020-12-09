@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <header>
+        <div class="logo"><img src="/img/LOGO.png" alt=""></div>
+    </header>
+    <div class="container-canvas flex space-between">
+        <canvas id="my-canvas" height="500px" width="500px"></canvas>
+        <div class="container-main">
+            <input type="text" class="input-user" placeholder="put text">
+            <button class="btn btn-main" onclick="onDrowText()">do it </button>
+            <button class="btn btn-main" onclick="clearCanvas()">Clear</button>
+            <button class="btn btn-main" onclick="changeIncrease(2)">A+</button>
+            <button class="btn btn-main" onclick="changeIncrease(-2)">A-</button>
+            <button class="btn btn-main">Up</button>
+            <button class="btn btn-main">Down</button>
+        </div>
+    </div>
+    <section class="container-pictures">
+    </section>
+    <footer></footer>
+
+    <script src="js/memeController.js"></script>
+    <script src="js/memeService.js"></script>
+</body>
+
+</html>
