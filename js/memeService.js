@@ -31,16 +31,31 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
+            id: 'up',
             txt: '',
-            size: 40,
-            align: 'left',
-            color: 'red'
+            size: 70,
+            align: 'center',
+            color: 'black',
+            axisX: 250,
+            axisY: 100
+        },
+        {
+            id: 'down',
+            txt: '',
+            size: 70,
+            align: 'center',
+            color: 'black',
+            axisX: 250,
+            axisY: 400
         }
     ]
 }
 
 function setCurrImg(imageId) {
     gCurrImg = getImgByID(imageId);
+}
+function getLines() {
+    return gMeme.lines
 }
 
 function findIdImg(imageId) {
@@ -50,12 +65,44 @@ function findIdImg(imageId) {
     });
 
 }
+function changeIncrease(size, lineIdx) {
+    console.log(lineIdx, 'lineIdx');
+    gMeme.lines[lineIdx].size += size;
+    onDrawImage(gMeme.selectedImgId)
+    renderCanvas()
+
+}
 
 function updateMemeId(imageId) {
     gMeme.selectedImgId = imageId;
 }
+function saveValFromUser(value, num) {
+    var imgId = gMeme.selectedImgId;
+    var axisX = gMeme.lines[num].axisX;
+    var axisY = gMeme.lines[num].axisY;
+    renderCanvas()
+    if (num === 0) {
+        gMeme.lines[0].txt = value;
+        renderCanvas(imgId, value, axisX, axisY);
+        console.log('amit up', gMeme.lines[0]);
 
+    } else {
+        gMeme.lines[1].txt = value;
+        renderCanvas(imgId, value, axisX, axisY);
+        console.log('amit d', gMeme.lines[1]);
+
+    }
+}
+
+function changeColor(color, num) {
+    gMeme.lines[num].color = color;
+    renderCanvas()
+
+}
 function getCurrImage() {
     return gCurrImg;
 }
 
+function canvas() {
+    gCanvas = document.querySelector('.my-canvas')
+}

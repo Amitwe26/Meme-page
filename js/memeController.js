@@ -1,7 +1,7 @@
 'use strict'
 
-let gCanvas
-let gCtx
+let gCanvas;
+let gCtx;
 
 function init() {
     onRenderImgs(gImgs)
@@ -11,57 +11,92 @@ function onRenderImgs() {
 
     var strHtml = gImgs.map(function (image) {
         return `
-         <img class="image" src="${image.url}" alt="image" onclick="onViewImage(${image.id})">
+         <img class="image" src="${image.url}" alt="image" onclick="onDrawImage(${image.id})">
          
          `
     })
     var elImgs = document.querySelector('.container-pictures');
     elImgs.innerHTML = strHtml.join('');
+
 }
 
-function onViewImage(imageId) {
+function renderCanvas(imgId) {
+    gCanvas = document.querySelector('#my-canvas');
+    gCtx = gCanvas.getContext('2d');
+    clearCanvas()
+    onDrawImage(gMeme.selectedImgId)
+    drawTxtVal()
+}
+
+function onDrawImage(imageId) {
     onUpdateMemeId(imageId);
+    openContainer()
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
     var img = new Image()
     img.src = `img/${imageId}.jpg`;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
-    }
-    onDrowText()
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
 
 }
-
-function onDrowText() {
-    var value = document.querySelector('.input-user').value;
-    console.log(value, 'amit is here');
-    drawText(value, 320, 100, gMeme);
-
+function openContainer() {
+    var elContainer = document.querySelector('.container-canvas')
+    elContainer.hidden = false;
+    elContainer.classList.add('flex');
 }
 
-function drawText(text, x, y, gMeme) {
-    gCtx.lineWidth = '1.5'
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'white'
-    gCtx.font = gMeme.lines[0].size + 'px'
-    gCtx.font = 'italic small-caps 900 40px serif'
-    gCtx.textAlign = 'center'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+function drawTxtVal() {
+    // window.changeVal = function (val) {}
+    let lines = getLines()
+    lines.forEach(function (line) {
+        gCtx.beginPath()
+        gCtx.fillText('', line.axisX, line.axisY)
+        gCtx.font = `${line.size}px impact`
+        gCtx.lineWidth = '1.5'
+        gCtx.strokeStyle = 'black'
+        gCtx.fillStyle = line.color
+        gCtx.textAlign = 'center'
+        gCtx.fillText(line.txt, line.axisX, line.axisY)
+        gCtx.strokeText(line.txt, line.axisX, line.axisY)
+        gCtx.save()
+
+    })
+}
+
+
+
+function onDrawTextTop() {
+    var value = document.querySelector('.input-usertop').value;
+    saveValFromUser(value, 0)
+    clearInputClick('top')
+}
+function onDrawTextBot() {
+    var value = document.querySelector('.input-userbot').value;
+    saveValFromUser(value, 1)
+    clearInputClick('bot')
 }
 
 function onUpdateMemeId(imageId) {
     updateMemeId(imageId);
 }
 
+
+function onChangeIncrease(size, lineIdx) {
+    changeIncrease(size, lineIdx)
+}
+
+function onChangeColor(color, num) {
+    console.log(color);
+    changeColor(color, num)
+}
+
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
 
-function changeIncrease(size) {
-    return gMeme.lines[0].size += size;
-}
+function clearInputClick(val) {
+    document.querySelector(`.input-user${val}`).value = '';
 
+}
 
 
 

@@ -1,22 +1,47 @@
 *{
     box-sizing: border-box;
 }
+@font-face{
+    font-family: 'impact';
+    src: url(../fonts/Impact-Font/impact.ttf);
+}
 body{
-    margin: 0 25px;
-    background-color: black;
+    margin: 0 ;
+    background-color: rgba(0, 0, 0, 0.863);
 }
 input {
     display: block;
     width: 200px;
     height: 30px;
     margin-bottom: 10px;
+    border-radius: 15px;
 }
+input[type='color'] {
+    padding: 3px;
+    width: 30px;
+    height: 27px;
+    background-color: rgba(85, 241, 246, 0.013);
+    border: none;
+    margin: -2%;
+
+  }
+  
+  .input_color {
+      display: inline-flex;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    /* optional formatting below here */
+    border-radius: 70%;
+  }
 
 
 
 header {
-    background-color: cadetblue;
+    background-color:  rgba(85, 241, 246, 0.835);
     height: 73px;
+    width: 100vw;
+    border-radius: 10px;
 }
 .logo img{
     width: 220px;
@@ -25,20 +50,22 @@ header {
 }
 
 .container-canvas{
+    margin:  0 auto;
     width: 90vw;
     height: 31.25em;
     margin: 3em;    
 }
 canvas {
     margin: 0 50px;
-    
 }
 
 .container-main{
-    background-color: rgba(200, 200, 200, 0.65);
+    margin:  0 auto;
+    background-color: rgba(85, 241, 246, 0.835);
     padding: 3em;
     height: 500px;
     border: 2px solid rgb(243, 178, 38);
+    border-radius: 10px;
     margin-right: 20px;
 
 }
@@ -52,6 +79,7 @@ canvas {
     padding-left: 1.25em;
     padding-right: 1.25em;
     margin: .2em;
+    cursor: pointer;
 }
 .btn-main:hover {
     color: #e2b75b;
@@ -59,21 +87,33 @@ canvas {
     cursor: pointer;
 }
 
-
-
-
-
-
 .container-pictures{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px , 1fr));
+    grid-template-rows: 150px 150px;
+    margin: 0 auto;
+    padding:20px;
     width: 90vw;
-    height: 500px;
+    /* height: 500px; */
     border: 1px solid black;
 
 }
 
 .container-pictures img{
     height: 150px;
-    width: 135px;
+    width: 145px;
+    padding: 3px;
+    margin: 3px;
+    cursor: pointer;
+
+}
+
+footer{
+    background-color:  rgba(85, 241, 246, 0.835);
+    text-align: center;
+    font-size: large;
+    margin-bottom: 0;
+    height: 70px;
 }
 
 
@@ -81,9 +121,12 @@ canvas {
 
 .flex {
     display: flex;
-    
+    justify-content: center;
 }
 .flex.space-between {
 
     justify-content: space-between;
+}
+.flex.center{
+    justify-content: center;
 }
