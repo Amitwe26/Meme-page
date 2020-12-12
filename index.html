@@ -9,36 +9,87 @@
 </head>
 
 <body onload="init()">
-    <header>
+    <header class="flex space-between">
         <div class="logo"><img src="img/LOGO.png" alt=""></div>
+        <button class="btn-gallery" onclick="openGallery()">Back to Gallery</button>
+        <button onclick="onToggleMenu()" class="main-bar menu-btn">☰</button>
+        <div class="list-mobile">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+            </ul>
+        </div>
     </header>
-    <div class="container-canvas " hidden>
+    <div class="container-canvas center" hidden>
         <div>
             <canvas id="my-canvas" height="500px" width="500px"></canvas>
         </div>
         <div class="container-main">
-            <input type="text" class="input-usertop" placeholder="put-text1" onchange="onDrawTextTop(this.value)">
-            <button class="btn btn-main" onclick="onChangeIncrease(5,0)">A+</button>
-            <button class="btn btn-main" onclick="onChangeIncrease(-5,0)">A-</button>
-            <input class="input_color" onchange="onChangeColor(this.value,0)" type="color">
-            <input type="text" class="input-userbot" placeholder="put-text2" onchange="onDrawTextBot(this.value)">
-            <button class="btn btn-main" onclick="onChangeIncrease(5,1)">A+</button>
-            <button class="btn btn-main" onclick="onChangeIncrease(-5,1)">A-</button>
-            <input class="input_color" onchange="onChangeColor(this.value,1)" type="color">
-            <button class="btn btn-main" onclick="onChangeLoc(event,'up')">Up</button>
-            <button class="btn btn-main" onclick="onChangeLoc('down')">Down</button>
-            <button class="btn btn-main" onclick="clearCanvas()">Clear</button>
+
+            <div class="main">
+                <input type="text" class="input-user" placeholder="put-text1" onkeyup="onDrawText(event ,this.value)">
+                <div class="grid">
+                    <button class="btn-main" onclick="onChangeIncrease(5)">A+</button>
+                    <div class="input_color grid">
+                        <input onchange="onChangeColor(this.value)" type="color">
+                    </div>
+                    <button class="btn-main" onclick="onChangeIncrease(-5)">A-</button>
+
+                </div>
+                <div class="grid">
+                    <button class="btn-main" onclick="onChangePosition('up')">Up</button>
+                    <button class="btn-main" onclick="onChangePosition('down')">Down</button>
+                    <select name="input-font" id="input-font" onchange="onFontSelect(this.value)">
+                        <option value="impact">impact</option>
+                        <option value="serif">serif</option>
+                        <option value="monospace">monospace</option>
+                    </select>
+                </div>
+                <div class="grid">
+                    <button class="btn-main" onclick="onChangeAlignTxt('left')"><img class="align-btn"
+                            src="img/align-to-left.png"></button>
+                    <button class="btn-main" onclick="onChangeAlignTxt('center')"><img class="align-btn"
+                            src="img/center-text-alignment.png"></button>
+                    <button class="btn-main" onclick="onChangeAlignTxt('right')"><img class="align-btn"
+                            src="img/align-to-right.png"></button>
+                </div>
+            </div>
+
+            <div class="boxs grid">
+                <button class="btn-edit add " onclick="onAddLine()"><img src="img/add.png" alt="Add"></button>
+                <button class="btn-edit swich " onclick="onSelectLine('switch')"><img
+                        src="img/up-and-down-opposite-double-arrows-side-by-side.png" alt="Switch"></button>
+                <button class="btn-edit clear " onclick="onDrawText(event ,this.value,'clean' )"><img
+                        src="img/trash.png" alt="Trash"></button>
+            </div>
+            <div class="faces-emoji flex main">
+                <img src="img/faces/face1.png" alt="">
+                <img src="img/faces/face2.png" alt="">
+                <img src="img/faces/face3.png" alt="">
+                <img src="img/faces/face4.png" alt="">
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+                <button class="btn-share" type="submit">Publish your Meme?</button>
+                <a href="#" class="btn-share download" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+                <div class="share-container"></div>
+            </form>
 
         </div>
     </div>
+    <div class="search-container flex">
+        <input type="search">
+        <button class="">Search</button>
+    </div>
     <section class="container-pictures">
     </section>
-    <footer class="flex">
-        <p>@Amit Weiss -Meme NOV 2020 -</p>
+    <footer>
+        <div class="flex center">@Amit Weiss -Meme NOV 2020 -</div>
     </footer>
-
-    <script src="js/memeController.js"></script>
     <script src="js/memeService.js"></script>
+    <script src="js/memeController.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/upload-main.js"></script>
 </body>
 
 </html>
