@@ -4,12 +4,13 @@ let gCanvas;
 let gCtx;
 
 function init() {
-    onRenderImgs(gImgs);
+    onRenderImgs();
 }
 
-function onRenderImgs() {
 
-    var strHtml = gImgs.map(function (image) {
+function onRenderImgs(value) {
+    var imgs = getImgs()
+    var strHtml = imgs.map(function (image) {
         return `
          <img class="image" src="${image.url}" alt="image" onclick="onDrawImage(${image.id},'new')">
          
@@ -124,7 +125,11 @@ function onDrawText(ev, value, clean) {
     }
 }
 
-
+function onFiltter(value) {
+    var font = '16px';
+    document.querySelector(`.${value}`).style.fontSize = '20px';
+    onRenderImgs(value)
+}
 function onUpdateMemeId(imageId) {
     updateMemeId(imageId);
 }
@@ -161,7 +166,6 @@ function onAddLine() {
 
 function onSelectLine() {
     selectLine();
-
 }
 
 function clearCanvas() {
@@ -184,6 +188,15 @@ function onToggleMenu() {
     }
 
 }
+
+//function filterImgs(str) {
+//     console.log(str);
+
+//     return gImgs.filter(img => {
+//         var filtImg = img.keyWords.filter(word => word.includes(str));
+//         console.log(filtImg);
+//     });
+// }
 
 
 

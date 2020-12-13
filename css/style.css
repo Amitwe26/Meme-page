@@ -77,6 +77,9 @@ label {
 }
 .main-bar{
     display: none;
+    margin-top: 10px;
+    z-index: 2;
+
 }
  
 header {
@@ -133,7 +136,7 @@ canvas {
     margin-bottom: 7px;
 }
 .main {
-    background-color:rgba(85, 241, 246, 0.835);
+    background-color:rgb(235 ,235 ,235 , .13);
     border-radius: 28px;
     padding: 1em;
 
@@ -208,7 +211,7 @@ canvas {
 
 }
 .faces-emoji{
-    background-color: rgba(255, 255, 255, 0.837);
+    background-color: rgb(235 ,235 ,235 , .13);
     border-radius: 28px;
     padding: 1em;
 }
@@ -257,12 +260,14 @@ footer{
     }
     #my-canvas{
         margin: 0 30px;
-        width: 20.875rem;
-        height: 21.875rem;
+        width: 25.25em;
+        height: 25.25em;
     }
     .container-main{
        padding: 1em;
        width: 20.875rem;
+       height: 25.25em;
+
     }
     .faces-emoji img{
         width: 70px;
@@ -271,6 +276,10 @@ footer{
 @media screen and (max-width: 740px) { 
     .search-container{
         display: none;
+    }
+    header{
+        width: 100%;
+        /* position: absolute; */
     }
     .logo img{
         margin-left: 5px;
@@ -284,8 +293,8 @@ footer{
         height: 35px;
         width: 35px;
         font-size: larger;
-        margin-right: 22px;
-        margin-top: 10px;
+        /* margin-right: 22px; */
+        /* margin-top: 10px; */
     }
     .container-canvas{
         flex-direction: column;
