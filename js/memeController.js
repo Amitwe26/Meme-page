@@ -24,13 +24,13 @@ function renderCanvas() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
     clearCanvas();
-    onDrawImage(gMeme.selectedImgId)
+    onDrawImage(gMeme.selectedImgId);
     onDrawTxtVal();
 }
 
 function onDrawImage(imageId, newPicture) {
     if (newPicture === 'new') {
-        gCurrLines = 0;
+        gCurrLine = 0;
         cleanTxtObjs();
     }
     onUpdateMemeId(imageId);
@@ -61,7 +61,7 @@ function openGallery() {
     elContainerPicture.style.display = 'block';
     elContainer.classList.remove('flex');
 }
-
+/* */
 function onDrawTxtVal() {
     let lines = getLines();
     lines.forEach(function (line) {
@@ -75,6 +75,24 @@ function onDrawTxtVal() {
         gCtx.strokeText(line.txt, line.axisX, line.axisY);
         gCtx.save()
     })
+    // onDrawRect()
+}
+function onDrawCurrLine(value) {
+    let lines = getLines();
+    let currLineIdx = getCurrentLine();
+    var meme = getMeme()
+    var line = meme.lines[currLineIdx]
+    // lines.forEach(function (line) {
+    gCtx.beginPath();
+    gCtx.font = `${line.size}px ${gFontTxt}`;
+    gCtx.lineWidth = '1.5';
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = line.color;
+    gCtx.textAlign = line.align;
+    gCtx.fillText(line.txt, line.axisX, line.axisY);
+    gCtx.strokeText(line.txt, line.axisX, line.axisY);
+    gCtx.save()
+    // })
     onDrawRect()
 }
 
@@ -94,12 +112,13 @@ function onDrawRect() {
 
 function onDrawText(ev, value, clean) {
     var key = ev.key;
-    var numline = gCurrLines;
+    var numline = gCurrLine;
+    console.log('koko', numline);
     if (key === 'Enter') {
         _clearInputTxt();
     }
-    if (gCurrLines === 3) return
     saveValFromUser(value, numline);
+    renderCanvas();
     if (clean === 'clean') {
         _clearInputTxt();
     }
@@ -112,10 +131,12 @@ function onUpdateMemeId(imageId) {
 
 function onChangePosition(direction) {
     if (direction === 'up' ? changePosition(-10) : changePosition(+10));
+    renderCanvas();
 }
 
 function onChangeIncrease(size) {
     changeIncrease(size);
+    renderCanvas();
 }
 
 function onFontSelect(font) {
@@ -125,18 +146,22 @@ function onFontSelect(font) {
 
 function onChangeColor(color) {
     changeColor(color);
+    renderCanvas();
 }
 
 function onChangeAlignTxt(pos) {
     changeAlignTxt(pos);
+    renderCanvas();
 }
 
 function onAddLine() {
-    updateCurrLine();
+    console.log(gMeme.lines, 'befor push');
+    addLine();
 }
 
 function onSelectLine() {
     selectLine();
+
 }
 
 function clearCanvas() {
@@ -145,7 +170,6 @@ function clearCanvas() {
 
 function _clearInputTxt() {
     document.querySelector('.input-user').value = '';
-
 }
 
 function onToggleMenu() {

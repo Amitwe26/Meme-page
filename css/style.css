@@ -33,39 +33,42 @@ li {
     margin-bottom: 20px;
     font-size: larger;
 }
-input {
+input{
+    height: 40px;
+    border-radius: 15px;
+    padding: 7px;
+}
+.input-user {
     display: block;
-    width: 20em;
+    width: 100%;
     height: 30px;
-    margin: 5px 10px;
+    margin: 5px auto;
     border-radius: 15px;
     padding: 7px;
     padding-left: 15px;
     outline: none;
 }
-
-input[type='color'] {
-    padding: 3px;
+input[type="color"]{
+    display:none;
+}
+.btnColor {
+    /* position: relative; */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     width: 1.9375rem;
     height: 1.9375rem;
-    background-color: rgba(85, 241, 246, 0.013);
-    border: none;
-    border-radius: 50%;
     cursor: pointer;
 }
-.input_color {
-    display: inline-flex;
-    overflow: hidden;
-    width: 4rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin-left: 1px;
+label {
+    margin: 0 auto;
 }
 #input-font{
     border-radius: 10px;
-    width: fit-content;
     height: 2.25em;
     margin: 4px auto;
+    width: 60px;
+
 }
 
 .align-btn{
@@ -144,9 +147,6 @@ canvas {
     background-color: #ffffff;
     color: #4b4b4b;
     transition: padding .6s;
-    padding-left: 1.25em;
-    padding-right: 1.25em;
-    /* margin: .2em; */
     cursor: pointer;
 }
 .btn-main:hover {
@@ -241,7 +241,7 @@ form {
     background-color: #8f44bb;
 }
 footer{
-    position: absolute;
+    position: relative;
     background-color:  rgba(85, 241, 246, 0.835);
     text-align: center;
     font-size: large;

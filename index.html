@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/13e44da656.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Memes!</title>
 </head>
 
 <body onload="init()">
@@ -31,7 +32,8 @@
                 <div class="grid">
                     <button class="btn-main" onclick="onChangeIncrease(5)">A+</button>
                     <div class="input_color grid">
-                        <input onchange="onChangeColor(this.value)" type="color">
+                        <label for="input-color"><img class="btnColor" src="img/paint-board-and-brush.png" alt="color">
+                            <input onchange="onChangeColor(this.value)" id="input-color" type="color"></label>
                     </div>
                     <button class="btn-main" onclick="onChangeIncrease(-5)">A-</button>
 

@@ -25,13 +25,12 @@ var gImgs = [
 ];
 
 var gCurrImg = null;
-var gCurrLines = 0;
+var gCurrLine = 0;
 var gFontTxt = 'impact'
 
 
 var gMeme = {
     selectedImgId: 0,
-    selectedLineIdx: null,
     lines: [
         {
             id: 'up',
@@ -51,15 +50,6 @@ var gMeme = {
             axisX: 250,
             axisY: 400
         },
-        // {
-        //     id: 'center',
-        //     txt: '',
-        //     size: 60,
-        //     align: 'center',
-        //     color: 'black',
-        //     axisX: 250,
-        //     axisY: 250
-        // }
     ]
 }
 
@@ -71,18 +61,34 @@ function getLines() {
     return gMeme.lines;
 }
 
-function updateCurrLine() {
-    gCurrLines++;
+function addLine() {
+    var newLine =
+    {
+        id: 'center',
+        txt: '',
+        size: 60,
+        align: 'center',
+        color: 'black',
+        axisX: 250,
+        axisY: 250
+    }
+    gMeme.lines.push(newLine);
+    console.log(gMeme.lines, 'after push');
 }
 
 function selectLine() {
-    if (gCurrLines === 1) {
-        gCurrLines = 0;
-    } else {
-        gCurrLines++;
-    }
+    var linesLength = gMeme.lines.length;
+    if (gCurrLine === linesLength - 1) gCurrLine = 0;
+    else gCurrLine++;
+    console.log('line', gCurrLine);
     _clearInputTxt()
-    return gCurrLines;
+
+}
+function getMeme() {
+    return gMeme;
+}
+function getCurrentLine() {
+    return gCurrLine;
 }
 
 function findIdImg(imageId) {
@@ -92,51 +98,35 @@ function findIdImg(imageId) {
 }
 
 function changeIncrease(size) {
-    var lineIdx = gCurrLines;
+    var lineIdx = gCurrLine;
     gMeme.lines[lineIdx].size += size;
     onDrawImage(gMeme.selectedImgId);
-    renderCanvas();
 }
 
 function changePosition(num) {
-    gMeme.lines[gCurrLines].axisY += num;
-    renderCanvas();
+    gMeme.lines[gCurrLine].axisY += num;
 }
 
 function updateMemeId(imageId) {
     gMeme.selectedImgId = imageId;
 }
 
-function saveValFromUser(value, num) {
-    var imgId = gMeme.selectedImgId;
-    var axisX = gMeme.lines[num].axisX;
-    var axisY = gMeme.lines[num].axisY;
-    renderCanvas();
-    if (num === 0) {
-        gMeme.lines[0].txt = value;
-        renderCanvas(imgId, value, axisX, axisY);
-        gMeme.selectedLineIdx = 1;
-        console.log(gMeme.selectedLineIdx);
-
-    } else if (num === 1) {
-        gMeme.lines[1].txt = value;
-        renderCanvas(imgId, value, axisX, axisY);
-        gMeme.selectedLineIdx = 2;
-        console.log(gMeme.selectedLineIdx);
-    }
+function saveValFromUser(value) {
+    var line = getCurrentLine()
+    gMeme.lines[line].txt = value;
 }
 
 function changeColor(color) {
-    gMeme.lines[gCurrLines].color = color;
-    renderCanvas();
+    gMeme.lines[gCurrLine].color = color;
+
 }
 
 function changeAlignTxt(position) {
-    var numAlign = gCurrLines;
+    var numAlign = gCurrLine;
     if (position === 'right') gMeme.lines[numAlign].align = position;
     if (position === 'left') gMeme.lines[numAlign].align = position;
     if (position === 'center') gMeme.lines[numAlign].align = position;
-    renderCanvas()
+
 }
 
 function getCurrImage() {
